@@ -6,7 +6,7 @@ import os
 
 
 import pathlib
-data_root_orig = "/home/deep/fashion1"
+data_root_orig = "/home/king/fashion"
 data_root = pathlib.Path(data_root_orig)
 print(data_root)
 all_image_paths = list(data_root.glob('*.jpeg'))
@@ -35,7 +35,7 @@ dataset = dataset.prefetch(1)
 
 for i,j in dataset:
     try:
-        tf.print(j)
+        tf.print(i)
     except:
         print("bad image")
 
