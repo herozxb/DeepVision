@@ -27,7 +27,7 @@ import numpy as np
 import tensorflow as tf
 import os
 import pathlib
-data_root_orig = "/home/king/fashion"
+data_root_orig = "/home/deep/fashion1"
 data_root = pathlib.Path(data_root_orig)
 print(data_root)
 all_image_paths = list(data_root.glob('*.jpeg'))
@@ -35,7 +35,7 @@ all_image_paths = [str(path) for path in all_image_paths]
 filenames = all_image_paths
 #labels = [i for i in range(len(filenames))]
 #print(labels)
-
+save_dir = "/home/deep/deepLearning/DeepVision/results"
 
 
 # step 2: create a dataset returning slices of `filenames`
@@ -81,8 +81,9 @@ def autoencoderConv2D_1(input_shape=(64, 64, 3), filters=[32, 64, 128, 1000]):
     return Model(inputs=input_img, outputs=decoded, name='AE'), Model(inputs=input_img, outputs=encoded, name='encoder')
 autoencoder, encoder = autoencoderConv2D_1()
 autoencoder.summary()
-pretrain_epochs = 500
+pretrain_epochs = 100
 batch_size = 256
+autoencoder.load_weights(save_dir+'/firstAutoEncoder.h5')
 autoencoder.compile(optimizer='adadelta', loss='mse')
 autoencoder.fit(dataset, epochs=pretrain_epochs)
 autoencoder.save_weights(save_dir+'/firstAutoEncoder.h5')
