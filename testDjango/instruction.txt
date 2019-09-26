@@ -1,5 +1,0 @@
-workon myproject
-C:\Users\xibo\AppData\Local\Programs\Python\Python36-32
-
-python manage.py runserver
-python manage.py startapp polls
